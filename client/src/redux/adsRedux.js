@@ -16,7 +16,7 @@ const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 const LOAD_ADS = createActionName('LOAD_ADS');
 const ADD_AD = createActionName('ADD_AD');
 const EDIT_AD = createActionName('EDIT_AD');
-const SEARCH_UPDATE = createActionName('SEARCH_UPDATE');
+const SEARCH_AD = createActionName('SEARCH_UPDATE');
 
 // action creators
 export const startRequest = () => ({ type: START_REQUEST });
@@ -30,7 +30,7 @@ export const editAd = (payload) => ({
   payload,
 });
 export const searching = (payload) => ({
-  type: SEARCH_UPDATE,
+  type: SEARCH_AD,
   payload,
 });
 
@@ -111,7 +111,8 @@ const adsReducer = (statePart = initialState, action = {}) => {
         ...statePart,
         request: { pending: false, error: action.error, success: false },
       };
-
+    case SEARCH_AD:
+      return statePart.ads.filter((ad) => ad.title.includes(action.payload));
     default:
       return statePart;
   }
