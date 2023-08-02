@@ -11,10 +11,12 @@ import { editAdRequest, getAdById } from '../../../redux/adsRedux';
 import { API_URL } from '../../../config';
 
 const AddEdit = () => {
+  const { id } = useParams();
+  console.log(id);
+  const adById = useSelector((state) => getAdById(state, id));
+  console.log(adById);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
-  const adById = useSelector((state) => getAdById(state, id));
 
   const [title, setTitle] = useState(adById.title);
   const [text, setText] = useState(adById.text);
@@ -24,11 +26,10 @@ const AddEdit = () => {
   const [image, setImage] = useState(adById.image);
   const [user, setUser] = useState(adById.user._id);
   const [status, setStatus] = useState(null);
-
   const activeUser = useSelector(getUser);
 
   useEffect(() => {
-    if (activeUser !== user) return navigate('/');
+    if (activeUser._id !== user) return navigate('/');
   }, [activeUser]);
 
   const handleSubmit = (e) => {
