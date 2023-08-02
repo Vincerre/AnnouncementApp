@@ -16,6 +16,7 @@ const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 const LOAD_ADS = createActionName('LOAD_ADS');
 const ADD_AD = createActionName('ADD_AD');
 const EDIT_AD = createActionName('EDIT_AD');
+const SEARCH_UPDATE = createActionName('SEARCH_UPDATE');
 
 // action creators
 export const startRequest = () => ({ type: START_REQUEST });
@@ -26,6 +27,10 @@ export const loadAds = (payload) => ({ payload, type: LOAD_ADS });
 export const addAd = (payload) => ({ payload, type: ADD_AD });
 export const editAd = (payload) => ({
   type: EDIT_AD,
+  payload,
+});
+export const searching = (payload) => ({
+  type: SEARCH_UPDATE,
   payload,
 });
 
