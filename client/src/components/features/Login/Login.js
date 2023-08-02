@@ -24,7 +24,6 @@ const Login = () => {
       header: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include',
       body: JSON.stringify({ login, password }),
     };
 

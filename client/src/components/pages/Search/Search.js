@@ -1,13 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { searching } from '../../../redux/adsRedux';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 const Search = () => {
-  const dispatch = useDispatch('');
-
   let defaultSearch = useSelector((state) => state.search);
   const [search, setSearch] = useState(defaultSearch);
 

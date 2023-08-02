@@ -2,7 +2,7 @@
 export const getUser = ({ users }) => users.user;
 
 // actions
-const createActionName = (name) => `app/users/${name}`;
+const createActionName = (name) => `app/user/${name}`;
 const LOG_IN = createActionName('LOG_IN');
 const LOG_OUT = createActionName('LOG_OUT');
 
@@ -29,7 +29,7 @@ const initialState = {
 const usersReducer = (statePart = initialState, action = {}) => {
   switch (action.type) {
     case LOG_IN:
-      return { ...statePart, user: { ...action.payload } };
+      return { user: { ...action.payload } };
     case LOG_OUT:
       return { ...statePart, user: null };
     default:

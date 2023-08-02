@@ -1,6 +1,6 @@
 import { API_URL } from '../config';
 import axios from 'axios';
-
+import { v4 as uuidv4 } from 'uuid';
 // selectors
 export const getAllAds = ({ ads }) => ads.ads;
 export const getAdById = ({ ads }, id) => ads.ads.find((ad) => ad._id === id);
@@ -86,7 +86,7 @@ const initialState = {
 const adsReducer = (statePart = initialState, action = {}) => {
   switch (action.type) {
     case ADD_AD:
-      return { ...statePart, ads: [...statePart.ads, action.payload] };
+      return { ...statePart, ads: [...statePart.ads, { ...action.payload }] };
     case EDIT_AD:
       return statePart.ads.map((ad) =>
         ad._id === action.payload.id ? { ...ad, ...action.payload } : ad
