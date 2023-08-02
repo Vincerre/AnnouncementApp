@@ -5,6 +5,8 @@ import axios from 'axios';
 export const getAllAds = ({ ads }) => ads.ads;
 export const getAdById = ({ ads }, id) => ads.ads.find((ad) => ad._id === id);
 export const getRequest = ({ ads }) => ads.request;
+export const getAdBySearch = ({ ads }, search) =>
+  ads.ads.filter((ad) => ad.title.toLowerCase().includes(search.toLowerCase()));
 
 // actions
 const createActionName = (name, reducerName) => `app/ads/${name}`;
@@ -16,7 +18,6 @@ const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 const LOAD_ADS = createActionName('LOAD_ADS');
 const ADD_AD = createActionName('ADD_AD');
 const EDIT_AD = createActionName('EDIT_AD');
-const SEARCH_AD = createActionName('SEARCH_UPDATE');
 
 // action creators
 export const startRequest = () => ({ type: START_REQUEST });
@@ -27,10 +28,6 @@ export const loadAds = (payload) => ({ payload, type: LOAD_ADS });
 export const addAd = (payload) => ({ payload, type: ADD_AD });
 export const editAd = (payload) => ({
   type: EDIT_AD,
-  payload,
-});
-export const searching = (payload) => ({
-  type: SEARCH_AD,
   payload,
 });
 
@@ -111,8 +108,7 @@ const adsReducer = (statePart = initialState, action = {}) => {
         ...statePart,
         request: { pending: false, error: action.error, success: false },
       };
-    case SEARCH_AD:
-      return statePart.ads.filter((ad) => ad.title.includes(action.payload));
+
     default:
       return statePart;
   }

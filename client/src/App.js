@@ -12,6 +12,7 @@ import Homepage from './components/pages/Homepage/Homepage';
 import Ad from './components/pages/Ad/Ad';
 import AddAd from './components/pages/AddAd/AddAd';
 import AddEdit from './components/pages/AddEdit/AddEdit';
+import SearchPage from './components/pages/SearchPage/SearchPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,8 +28,8 @@ function App() {
           <Route path={'/ads/:id'} element={<Ad />} />
           <Route path={'/ads/add'} element={<AddAd />} />
           <Route path={'/ads/edit/:id'} element={<AddEdit />} />
-          {/*<Route path={'/ads/remove/:id'} element={} />
-          <Route path={'/search/searchPhrase'} element={} />*/}
+          {/*<Route path={'/ads/remove/:id'} element={} />*/}
+          <Route path={'/search/:searchPhrase'} element={<SearchPage />} />
           <Route path={'/login'} element={<Login />} />
           <Route path={'/register'} element={<Register />} />
           <Route path={'/logout'} element={<Logout />} />

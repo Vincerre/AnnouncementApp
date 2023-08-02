@@ -2,7 +2,7 @@ import Ads from '../../layout/Ads/Ads';
 import { Button, Alert } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
-
+import Search from '../Search/Search';
 import { getAllAds, getRequest } from '../../../redux/adsRedux';
 import { getUser } from '../../../redux/usersRedux';
 import { useSelector } from 'react-redux';
@@ -28,6 +28,9 @@ const Homepage = () => {
   else if (request.success)
     return (
       <div>
+        <div>
+          <Search />
+        </div>
         {user !== null && (
           <Link to="/ads/add">
             <Button color="secondary">Add</Button>
