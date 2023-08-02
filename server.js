@@ -10,7 +10,8 @@ const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 if (NODE_ENV === 'production')
   dbUri = `mongodb+srv://patryk:${process.env.DB_PASSWORD}@fullstack-app.81gbipl.mongodb.net/?retryWrites=true&w=majority`;
-else if (NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/fullstack-backend';
+else if (NODE_ENV === 'test')
+  dbUri = 'mongodb://localhost:27017/fullstack-backend';
 else dbUri = 'mongodb://localhost:27017/fullstack-backend';
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
