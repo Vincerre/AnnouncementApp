@@ -5,7 +5,6 @@ import { getUser } from '../../../redux/usersRedux';
 
 const NavBar = () => {
   const user = useSelector(getUser);
-  console.log({ user });
 
   return (
     <Navbar
