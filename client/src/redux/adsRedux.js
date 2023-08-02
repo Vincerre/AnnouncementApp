@@ -1,6 +1,5 @@
 import { API_URL } from '../config';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 // selectors
 export const getAllAds = ({ ads }) => ads.ads;
 export const getAdById = ({ ads }, id) => ads.ads.find((ad) => ad._id === id);

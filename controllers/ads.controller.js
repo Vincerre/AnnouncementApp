@@ -76,7 +76,10 @@ exports.update = async (req, res) => {
           },
         }
       );
-      if (image && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType)) {
+      if (
+        image &&
+        ['image/png', 'image/jpeg', 'image/gif'].includes(fileType)
+      ) {
         image: image.filename;
       }
       res.json({ message: 'Updated' });
