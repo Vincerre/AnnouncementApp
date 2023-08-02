@@ -24,6 +24,7 @@ const Login = () => {
       header: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
       body: JSON.stringify({ login, password }),
     };
 
@@ -78,7 +79,7 @@ const Login = () => {
         </Spinner>
       )}
 
-      <Form.Group className="mb-3" controlId="formLogin">
+      <Form.Group className="mb-3" controlId="login">
         <Form.Label>Login</Form.Label>
         <Form.Control
           type="text"
@@ -88,7 +89,7 @@ const Login = () => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formPassword">
+      <Form.Group className="mb-3" controlId="password">
         <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"

@@ -14,25 +14,28 @@ const SearchPage = () => {
 
   console.log(getBySearch);
   return (
-    <Card style={{ width: '100%' }}>
-      <Card.Img variant="top" src={`${IMG_URL}/${getBySearch[0].image}`} />
-      <Card.Body>
-        <Card.Title>Title: {getBySearch[0].title}</Card.Title>
-        <Card.Text>
-          <p>Loction: {getBySearch[0].location}</p>
-          <p>Description: {getBySearch[0].text}</p>
-          <p>Date: {getBySearch[0].date}</p>
-          <p>Price: {getBySearch[0].price}</p>
-          <p>User: {getBySearch[0].user.login}</p>
-          {activeUser !== null &&
-            activeUser._id === getBySearch[0].user._id && (
-              <Link to={'/ads/edit/' + getBySearch[0]._id}>
-                <Button variant="primary">Edit</Button>
-              </Link>
-            )}
-        </Card.Text>
-      </Card.Body>
-    </Card>
+    <section>
+      {getBySearch.map((ad) => (
+        <Card style={{ width: '100%' }}>
+          <Card.Img variant="top" src={`${IMG_URL}/${ad.image}`} />
+          <Card.Body>
+            <Card.Title>Title: {ad.title}</Card.Title>
+            <Card.Text>
+              <p>Loction: {ad.location}</p>
+              <p>Description: {ad.text}</p>
+              <p>Date: {ad.date}</p>
+              <p>Price: {ad.price}</p>
+              <p>User: {ad.user.login}</p>
+              {activeUser !== null && activeUser._id === ad.user._id && (
+                <Link to={'/ads/edit/' + ad._id}>
+                  <Button variant="primary">Edit</Button>
+                </Link>
+              )}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
+    </section>
   );
   console.log(getBySearch);
 };
