@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { loadAdsRequest } from './redux/adsRedux';
+import { useDispatch } from 'react-redux';
 import NavBar from './components/layout/NavBar/NavBar';
 import Register from './components/features/Register/Register';
 import Login from './components/features/Login/Login';
@@ -11,6 +14,10 @@ import AddAd from './components/pages/AddAd/AddAd';
 import AddEdit from './components/pages/AddEdit/AddEdit';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadAdsRequest());
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <Container>

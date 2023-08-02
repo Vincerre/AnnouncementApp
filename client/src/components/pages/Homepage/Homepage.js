@@ -2,26 +2,15 @@ import Ads from '../../layout/Ads/Ads';
 import { Button, Alert } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 
-import { getAllAds, getRequest, loadAdsRequest } from '../../../redux/adsRedux';
+import { getAllAds, getRequest } from '../../../redux/adsRedux';
 import { getUser } from '../../../redux/usersRedux';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Homepage = () => {
-  const dispatch = useDispatch();
-
   const user = useSelector(getUser);
   const ads = useSelector(getAllAds);
   const request = useSelector(getRequest);
-
-  console.log('ads', ads);
-  console.log('req', request);
-  console.log('user', user);
-
-  useEffect(() => {
-    dispatch(loadAdsRequest());
-  }, [dispatch]);
 
   if (request.pending)
     return (

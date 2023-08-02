@@ -114,7 +114,10 @@ const Register = () => {
 
       <Form.Group className="mb-3" controlId="avatar">
         <Form.Label>Avatar</Form.Label>
-        <Form.Control type="file" onChange={(e) => setAvatar(e.target.files[0])} />
+        <Form.Control
+          type="file"
+          onChange={(e) => setAvatar(e.target.files[0])}
+        />
       </Form.Group>
 
       <Button variant="primary" type="submit">

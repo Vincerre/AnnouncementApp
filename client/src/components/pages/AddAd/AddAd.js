@@ -3,13 +3,13 @@ import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 import { getUser } from '../../../redux/usersRedux';
+import { useEffect, useState } from 'react';
 import { API_URL } from '../../../config';
+import { addAdRequest } from '../../../redux/adsRedux';
+import Spinner from 'react-bootstrap/Spinner';
 
 const AddAd = () => {
-  const activeUser = useSelector(getUser);
-  console.log(activeUser);
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const [date, setDate] = useState('');
@@ -17,6 +17,15 @@ const AddAd = () => {
   const [location, setLocation] = useState('');
   const [image, setImage] = useState(null);
   const [status, setStatus] = useState(null);
+
+  const activeUser = useSelector(getUser);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (activeUser === null) return navigate('/');
+  }, [activeUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,10 +44,14 @@ const AddAd = () => {
     };
 
     setStatus('loading');
-    fetch(`${API_URL}/ads/}`, options)
+    fetch(`${API_URL}/api/ads}`, options)
       .then((res) => {
         if (res.status === 201) {
           setStatus('success');
+          dispatch(addAdRequest(fd));
+          setTimeout(() => {
+            return navigate('/');
+          }, 2000);
         } else if (res.status === 400) {
           setStatus('clientError');
         } else if (res.status === 409) {
@@ -54,6 +67,33 @@ const AddAd = () => {
   return (
     <Form className="col-12 col-sm-3 mx-auto" onSubmit={handleSubmit}>
       <h1 className="my-4">Add an advert</h1>
+
+      {status === 'success' && (
+        <Alert variant="success">
+          <Alert.Heading>Success!</Alert.Heading>
+          <p>You have successfully added your advert.</p>
+        </Alert>
+      )}
+
+      {status === 'serverError' && (
+        <Alert variant="danger">
+          <Alert.Heading>Something went wrong...</Alert.Heading>
+          <p>Unexpected error... Try again!</p>
+        </Alert>
+      )}
+
+      {status === 'clientError' && (
+        <Alert variant="danger">
+          <Alert.Heading>Incorrect data</Alert.Heading>
+          <p>Login or password are incorrect</p>
+        </Alert>
+      )}
+
+      {status === 'loading' && (
+        <Spinner animation="border" role="status" className="block mx-auto">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      )}
 
       <Form.Group className="mb-3" controlId="formTitle">
         <Form.Label>Title</Form.Label>
@@ -111,6 +151,9 @@ const AddAd = () => {
           onChange={(e) => setImage(e.target.files[0])}
         />
       </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
     </Form>
   );
 };

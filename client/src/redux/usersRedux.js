@@ -29,7 +29,7 @@ const initialState = {
 const usersReducer = (statePart = initialState, action = {}) => {
   switch (action.type) {
     case LOG_IN:
-      return { user: { ...action.payload } };
+      return { ...statePart, user: { ...action.payload } };
     case LOG_OUT:
       return { ...statePart, user: null };
     default:

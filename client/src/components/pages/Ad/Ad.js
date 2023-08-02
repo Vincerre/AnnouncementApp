@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 
 const Ad = () => {
   const activeUser = useSelector(getUser);
-  console.log('ACTVIE', activeUser);
   const { id } = useParams();
   const adById = useSelector((state) => getAdById(state, id));
 
